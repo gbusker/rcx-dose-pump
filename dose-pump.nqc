@@ -1,0 +1,38 @@
+
+
+task push()
+{
+  while (true) {
+    OnFwd(OUT_A);
+    Wait(10);
+    Off(OUT_A);
+    Wait(100);
+  }
+}       
+
+task pull()
+{
+  OnRev(OUT_A);
+  while (SENSOR_2 == 0) { Wait(10);}
+  Off(OUT_A);
+}
+
+task sensors() {
+  while (true) {
+    if (SENSOR_1 == 1) {
+      stop push;
+      //      start pull;
+      return;
+    }
+  }
+}
+
+
+task main() {
+  
+  SetSensor(SENSOR_1, SENSOR_TOUCH);
+  SetSensor(SENSOR_2, SENSOR_TOUCH);
+  
+  start sensors;
+  start push;
+}
