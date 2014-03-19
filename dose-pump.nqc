@@ -1,13 +1,17 @@
 #define END_REACHED 0
 
+// Time in 1/100 s
+#define RUNTIME  10
+#define WAITTIME 6000 // 1m
+
 
 task push()
 {
   while (true) {
     OnFwd(OUT_A);
-    Wait(10);
+    Wait(RUNTIME);
     Off(OUT_A);
-    Wait(100);
+    Wait(WAITTIME);
   }
 }       
 
