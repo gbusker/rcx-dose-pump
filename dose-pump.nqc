@@ -1,3 +1,4 @@
+#define END_REACHED 0
 
 
 task push()
@@ -17,22 +18,20 @@ task pull()
   Off(OUT_A);
 }
 
-task sensors() {
-  while (true) {
-    if (SENSOR_1 == 1) {
-      stop push;
-      //      start pull;
-      return;
-    }
-  }
-}
-
-
 task main() {
   
   SetSensor(SENSOR_1, SENSOR_TOUCH);
   SetSensor(SENSOR_2, SENSOR_TOUCH);
-  
-  start sensors;
+  SetEvent (END_REACHED, SENSOR_1, EVENT_TYPE_PRESSED);
   start push;
+
+  monitor ( EVENT_MASK(END_REACHED) ) {
+    while (true) {
+      Wait(10000);
+    }
+  }
+  catch (EVENT_MASK(END_REACHED)) {
+    stop push;
+    Off(OUT_A);
+  }
 }
