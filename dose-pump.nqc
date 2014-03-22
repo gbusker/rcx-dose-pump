@@ -2,15 +2,18 @@
 
 // Time in 1/100 s
 #define RUNTIME  10
-#define WAITTIME 6000 // 1m
+#define WAITTIME 3000 // 30s
 
 
 task push()
 {
+  int i = 0;
   while (true) {
+    i++;
     OnFwd(OUT_A);
     Wait(RUNTIME);
     Off(OUT_A);
+    SetUserDisplay(i,0);
     Wait(WAITTIME);
   }
 }       
