@@ -5,3 +5,8 @@ dose-pump.rcx: dose-pump.nqc
 
 install: dose-pump.rcx
 	nqc -d $<
+	nqc -sleep 0
+
+firmware: firm0332.lgo
+	nqc -firmware $<
+

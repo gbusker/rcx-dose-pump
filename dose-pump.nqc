@@ -2,7 +2,7 @@
 
 // Time in 1/100 s
 #define RUNTIME  10
-#define WAITTIME 3000 // 30s
+#define WAITTIME 12000 // 120s
 
 
 task push()
@@ -29,6 +29,7 @@ task main() {
   
   SetSensor(SENSOR_1, SENSOR_TOUCH);
   SetSensor(SENSOR_2, SENSOR_TOUCH);
+  SetSensor(SENSOR_3, SENSOR_TOUCH);
   SetEvent (END_REACHED, SENSOR_1, EVENT_TYPE_PRESSED);
   start push;
 
