@@ -2,8 +2,10 @@
 
 // Time in 1/100 s
 #define RUNTIME  10
-#define WAITTIME 12000 // 120s
 
+#ifndef WAITTIME
+#define WAITIME 120000
+#endif
 
 task push()
 {
@@ -13,8 +15,8 @@ task push()
     OnFwd(OUT_A);
     Wait(RUNTIME);
     Off(OUT_A);
-    SetUserDisplay(i,0);
     Wait(WAITTIME);
+    SetUserDisplay(i,0);
   }
 }       
 
@@ -26,7 +28,9 @@ task pull()
 }
 
 task main() {
-  
+ 
+  SetUserDisplay(WAITTIME/100,0);
+ 
   SetSensor(SENSOR_1, SENSOR_TOUCH);
   SetSensor(SENSOR_2, SENSOR_TOUCH);
   SetSensor(SENSOR_3, SENSOR_TOUCH);
